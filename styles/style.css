@@ -164,3 +164,28 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
+
+.game-board {
+  width: 90%;
+  height: 70vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+}
+
+.card-box {
+  width: 20%;
+  height: 30%;
+}
+
+.game-board {
+  background-color: tan;
+}
+
+.card-box {
+  background-color: sandybrown;
+}
