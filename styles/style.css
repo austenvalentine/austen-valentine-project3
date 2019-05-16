@@ -166,7 +166,7 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
 }
 
 .game-board {
-  width: 90%;
+  background-color: tan;
   height: 70vh;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -175,17 +175,55 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   -webkit-box-direction: normal;
       -ms-flex-flow: row wrap;
           flex-flow: row wrap;
+  position: relative;
+}
+
+.splash.show {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #ffaabbcc;
+}
+
+.splash.hide {
+  display: none;
 }
 
 .card-box {
   width: 20%;
   height: 30%;
-}
-
-.game-board {
-  background-color: tan;
-}
-
-.card-box {
   background-color: sandybrown;
+  position: relative;
+  border-radius: 10%;
+}
+
+.card-box-checkmark {
+  background-color: thistle;
+  content: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.site-wrapper {
+  margin: 0 auto;
+  width: 90%;
 }

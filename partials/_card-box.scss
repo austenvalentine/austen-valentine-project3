@@ -1,0 +1,19 @@
+.card-box {
+    width: 20%;
+    height: 30%;
+    background-color: sandybrown;
+    position: relative;
+    border-radius: 10%;
+    
+}
+
+.card-box-checkmark {
+    // background for checkmark overlay
+    background-color: thistle;
+    content: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}

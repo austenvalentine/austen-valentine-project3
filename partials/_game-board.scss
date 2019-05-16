@@ -1,11 +1,7 @@
 .game-board {
-    width: 90%;
+    background-color: tan;
     height: 70vh;
     display: flex;
     flex-flow: row wrap;
-}
-
-.card-box {
-    width: 20%;
-    height: 30%;
+    position: relative;
 }
