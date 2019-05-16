@@ -27,7 +27,7 @@ $(function() {
         this.startButton.on('click', () => {
             this.splash.removeClass('show');
             this.splash.addClass('hide');
-            this.gameScreen.removeClass('waiting');
+            this.gameScreen.removeClass('blurred');
 
         })
 

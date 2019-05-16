@@ -190,7 +190,7 @@ main {
           align-items: center;
 }
 
-.game-screen.waiting {
+.blurred {
   -webkit-filter: blur(5px);
           filter: blur(5px);
 }
@@ -199,9 +199,18 @@ main {
   background-color: tan;
   list-style-type: none;
   height: 70vh;
+  padding: 1vh 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-line-pack: justify;
+      align-content: space-between;
+  -webkit-box-align: space-center;
+      -ms-flex-align: space-center;
+          align-items: space-center;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-flow: row wrap;
@@ -211,6 +220,7 @@ main {
 
 .card {
   width: 20%;
+  margin: 0 2.5%;
   position: relative;
   height: 20vh;
 }
@@ -267,16 +277,19 @@ main {
       -ms-flex-align: end;
           align-items: flex-end;
   padding: 15% 10%;
+  z-index: 2;
   color: #efefef;
   text-shadow: 0px 0px 4px #010101;
 }
 
 .face-up .check-mark {
+  padding: 10%;
   -o-object-fit: fit;
      object-fit: fit;
 }
 
 .face-up .flag {
+  padding: 5%;
   -o-object-fit: fit;
      object-fit: fit;
   -o-object-position: center;
@@ -302,7 +315,7 @@ main {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background-color: #efefef88;
+  background-color: #89898988;
 }
 
 .splash.show {
