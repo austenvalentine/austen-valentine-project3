@@ -4,9 +4,8 @@ $(function() {
     const card = function (countryName, countrycode) {
         this.name = countryName;
         this.code = countryCode;
-        this.box = $('div.memo-card');
-        // how is this going to be built?
-        // this.component = this.box.append()
+        this.component = $('<div>').attr('class', '.memo-card');
+        // nest country info into the component div
     }
 
     const countriesSubset = [];

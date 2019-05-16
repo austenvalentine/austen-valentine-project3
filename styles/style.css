@@ -165,6 +165,16 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   box-sizing: border-box;
 }
 
+.site-wrapper {
+  margin: 0 auto;
+  width: 90%;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
 .game-board {
   background-color: tan;
   height: 70vh;
@@ -176,6 +186,24 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
       -ms-flex-flow: row wrap;
           flex-flow: row wrap;
   position: relative;
+}
+
+.card.face-down {
+  width: 20%;
+  height: 30%;
+  background-color: sandybrown;
+  position: relative;
+  border-radius: 10%;
+}
+
+.card.face-up.matched {
+  background-color: thistle;
+  position: relative;
+}
+
+.card.matched::before {
+  background-image: url(assets/checkmark.svg);
+  position: absolute;
 }
 
 .splash.show {
@@ -203,27 +231,4 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
 
 .splash.hide {
   display: none;
-}
-
-.card-box {
-  width: 20%;
-  height: 30%;
-  background-color: sandybrown;
-  position: relative;
-  border-radius: 10%;
-}
-
-.card-box-checkmark {
-  background-color: thistle;
-  content: none;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-
-.site-wrapper {
-  margin: 0 auto;
-  width: 90%;
 }

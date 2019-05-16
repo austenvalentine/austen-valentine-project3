@@ -1,4 +1,4 @@
-.card-box {
+.card.face-down {
     width: 20%;
     height: 30%;
     background-color: sandybrown;
@@ -7,13 +7,13 @@
     
 }
 
-.card-box-checkmark {
-    // background for checkmark overlay
+.card.face-up.matched {
     background-color: thistle;
-    content: none;
+    position: relative;
+}
+
+.card.matched::before {
+    background-image: url(assets/checkmark.svg);
     position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+
 }
