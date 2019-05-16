@@ -1,19 +1,45 @@
-.card.face-down {
+.card {
     width: 20%;
-    height: 30%;
-    background-color: sandybrown;
     position: relative;
-    border-radius: 10%;
+    height: 20vh;
+}
+
+.face-down {
+    @include overlay();
+    background-color: teal;
     
+    display: none;
 }
 
-.card.face-up.matched {
-    background-color: thistle;
-    position: relative;
+// .face-down .card-emblem {}
+
+.face-up {
+    @include overlay();
+    @include flex-center();
+    background-color: slategray;
+    // display: none;
 }
 
-.card.matched::before {
-    background-image: url(assets/checkmark.svg);
-    position: absolute;
+.face-up .name {
+    @include overlay();
+    @include flex-corner();
+    color: #efefef;
+    text-shadow: 0px 0px 4px #010101;
 
 }
+
+.face-up .check-mark {
+    object-fit: fit;
+}
+
+.face-up .flag {
+    object-fit: fit;
+    object-position: center;
+}
+
+.wrap-image {
+    @include overlay();
+    @include flex-center();
+    background-color: #efefef88;
+}
+

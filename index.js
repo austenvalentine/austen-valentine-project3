@@ -19,6 +19,7 @@ $(function() {
 
     jamApp.init = function () {
         // cache selectors - start screen
+        this.gameScreen = $('.game-screen');
         this.startButton = $('button.start');
         this.splash = $('.splash');
         this.guessDisplay = $('.guess-display');
@@ -26,7 +27,10 @@ $(function() {
         this.startButton.on('click', () => {
             this.splash.removeClass('show');
             this.splash.addClass('hide');
+            this.gameScreen.removeClass('waiting');
+
         })
+
 
         this.gameBoard = $('.game-board');
         this.setupBoard  = function() {
