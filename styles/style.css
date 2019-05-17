@@ -227,6 +227,7 @@ main {
   margin: 0 2vh;
   position: relative;
   height: 20vh;
+  border-radius: 5px;
 }
 
 .face-down {
@@ -249,6 +250,16 @@ main {
       -ms-flex-pack: center;
           justify-content: center;
   background-color: teal;
+}
+
+.face-down:hover {
+  -webkit-box-shadow: 0 0 0 10px yellow;
+          box-shadow: 0 0 0 10px yellow;
+}
+
+.face-down:active {
+  -webkit-box-shadow: 0 0 0 10px orange;
+          box-shadow: 0 0 0 10px orange;
 }
 
 .face-down .card-emblem {

@@ -11,8 +11,11 @@ $(function() {
         startButton: $('button.start'),
         splash: $('.splash'),
         guessDisplay: $('.guess-display'),
+        guesses: 0,
         cardsInPlay: [],
+        cardsMatched: [],
         countriesSubset: [],
+        pickPair: [],
         splashGo: function (){
             this.splash.removeClass('show');
             this.splash.addClass('hide');
@@ -43,18 +46,17 @@ $(function() {
         },
         dealCards: function (){
             // scoop up all the cards from the DOM into
-            // a deck of cards - convert the JQuery selector container 
-            // to an array to use built-in array methods
-            const deck = $('.card').toArray();
+            // a deck of cards - convert the nodeList to array
+            const deck = Array.from(document.querySelectorAll('.card'));
             // assign countries to pairs of cards in the deck and deal
             // them to the virtual board
-
+            this.cardsInPlay = [];
             this.countriesSubset.forEach((country, index) => {
                 // pick a random pair of cards from the deck
                 const cardIndex1 = Math.floor(Math.random() * deck.length);
-                const card1 = deck.splice(cardIndex1, 1);
+                const card1 = deck.splice(cardIndex1, 1)[0];
                 const cardIndex2 = Math.floor(Math.random() * deck.length);
-                const card2 = deck.splice(cardIndex2, 1);
+                const card2 = deck.splice(cardIndex2, 1)[0];
                 // assign current country's flag and name to the pair
                 $(card1).find(".flag").attr(`src`, "assets/flags/" + country[1].toLowerCase() + ".svg");
                 $(card1).find(".name").text(country[0]);
@@ -63,13 +65,50 @@ $(function() {
                 // this is used to keep track of which cards are clickable
                 this.cardsInPlay.push(card1, card2);
             });
+            
         },
         resetBoard: function() {
             this.pickCountriesSubset(this.countries);
             this.dealCards();
             // don't want to hide on init so face-up shows during splash
-            this.cardsInPlay.forEach(card => $(card).find('.face-up').addClass('hide'));
-            $('.face-up').addClass('hide');
+            document.querySelectorAll('.face-up').forEach(face => face.classList.add('hide'));
+            // set all cards to listen
+            this.cardsInPlay.forEach(card => {
+                card.addEventListener('click', function() {
+                    // player had a chance to see wrong picks before resetting pair
+                    if (jamApp.pickPair.length === 2) {
+                        jamApp.pickPair.forEach(card => {
+                            card.childNodes[3].classList.toggle('hide');
+                        })
+                        jamApp.pickPair = [];
+                    } else if (!this.childNodes[3].classList.contains('hide')) {
+                        // current card is not interactive
+                        console.log("nope. you can't click me!");
+                        return undefined;
+                    } else if (jamApp.pickPair.length === 0){
+                        console.log('picking first card');
+                        jamApp.pickPair.push(this);
+                        // show first card face-up side
+                        this.childNodes[3].classList.toggle('hide');
+                    } else if (jamApp.pickPair.length === 1) {
+                        jamApp.guesses++;
+                        jamApp.guessDisplay.text(jamApp.guesses);
+                        console.log('picking second card');
+                        jamApp.pickPair.push(this);
+                        // show first card face-up side
+                        this.childNodes[3].classList.toggle('hide');
+                        
+                        const firstPick = jamApp.pickPair[0].childNodes[3].childNodes[1].innerText;
+                        const secondPick = jamApp.pickPair[1].childNodes[3].childNodes[1].innerText;
+                        console.log('picked: ', firstPick, secondPick);
+                        if (firstPick === secondPick) {
+                            console.log('match', firstPick, secondPick);
+                            jamApp.pickPair = [];
+                        }
+                    }
+                })
+            });
+            
         },
         init: function(countriesData) {
             // stretch countriesData should have a method to retrieve
@@ -79,13 +118,17 @@ $(function() {
             this.pickCountriesSubset(this.countries);
             this.dealCards();
         },
+        handleCardClick: function() {
+             
+        },
+
     };
 
 
     // events - splash screen
     // bind for method to refer to jamApp instead of startButton
     jamApp.startButton.on('click', jamApp.splashGo.bind(jamApp));
-
+        
     // launch game
     jamApp.init(countryData);
 });

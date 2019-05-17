@@ -3,12 +3,20 @@
     margin: 0 2vh;
     position: relative;
     height: 20vh;
+    border-radius: 5px;
 }
 
 .face-down {
     @include overlay();
     @include flex-center();
     background-color: teal;
+}
+
+.face-down:hover {
+    box-shadow: 0 0 0 10px yellow;
+}
+.face-down:active {
+    box-shadow: 0 0 0 10px orange;
 }
 
 .face-down .card-emblem {
