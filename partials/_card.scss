@@ -1,6 +1,6 @@
 .card {
     width: 20%;
-    margin: 0 2.5%;
+    margin: 0 2vh;
     position: relative;
     height: 20vh;
 }
@@ -24,6 +24,7 @@
 .face-up .name {
     @include overlay();
     @include flex-corner();
+    text-align: right;
     z-index: 2;
     color: #efefef;
     text-shadow: 0px 0px 4px #010101;

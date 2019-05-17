@@ -199,7 +199,7 @@ main {
   background-color: tan;
   list-style-type: none;
   height: 70vh;
-  padding: 1vh 0;
+  padding: 2vh 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -220,7 +220,7 @@ main {
 
 .card {
   width: 20%;
-  margin: 0 2.5%;
+  margin: 0 2vh;
   position: relative;
   height: 20vh;
 }
@@ -277,6 +277,7 @@ main {
       -ms-flex-align: end;
           align-items: flex-end;
   padding: 15% 10%;
+  text-align: right;
   z-index: 2;
   color: #efefef;
   text-shadow: 0px 0px 4px #010101;
