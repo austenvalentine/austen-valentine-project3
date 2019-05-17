@@ -1,5 +1,5 @@
 //could I just put this in a .json file?
-countryCodes = [
+countryData = [
     ["Algeria", "dz"],
     ["Angola", "ao"],
     ["Benin", "bj"],
@@ -7,7 +7,7 @@ countryCodes = [
     ["Burkina Faso", "bf"],
     ["Burundi", "bi"],
     ["Cameroon", "cm"],
-    ["Cape Verde Islands", "cv"],
+    ["Cape Verde", "cv"],
     ["Central African Republic", "cf"],
     ["Chad", "td"],
     ["Comoros", "km"],

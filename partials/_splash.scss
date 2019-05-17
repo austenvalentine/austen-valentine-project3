@@ -1,15 +1,8 @@
 .splash.show {
     @include overlay();
-    z-index: 10;
-    
-
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-    
+    @include flex-center();
+    z-index: 10;  
     background-color: #ffaabbcc;
-
 }
 
 .splash button {
