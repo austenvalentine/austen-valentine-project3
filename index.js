@@ -1,5 +1,7 @@
 $(function() {
     const jamApp = {
+        // using class maybe a better alternative to an object literal
+
         // get country data
         countries: countryCodes,
         // cache selectors
@@ -10,24 +12,23 @@ $(function() {
         gameBoard: [],
         countriesSubset: [],
         splashGo: function (){
-            console.log(this);
             this.splash.removeClass('show');
             this.splash.addClass('hide');
             this.gameScreen.removeClass('blurred');
             this.init(this.countries);
         },
-        init: function(countries) {
-            // consider using a class instead of init next time
-
+        pickCountriesSubset: function (countries){
+            this.countriesSubset = [];
             // countries parameter needs an array of arrays
             // [[name, country-code],...]
-
             // pick the subset of countries to match
             for (let i = 0; i < 6; i++) {
                 const randIndex = Math.floor(Math.random() * countries.length);
                 const randCountry = countries.splice(randIndex, 1)[0];
                 this.countriesSubset.push(randCountry);
             };
+        },
+        dealCards: function (){
             // scoop up all the cards from the DOM into
             // a deck of cards - convert the JQuery selector container 
             // to an array to use built-in array methods
@@ -48,6 +49,10 @@ $(function() {
                 $(card2).find(".name").text(country[0]);
                 this.gameBoard.push(card1, card2);
             });
+        },
+        init: function(countries) {
+            this.pickCountriesSubset(countries);
+            this.dealCards();
         },
     };
 
