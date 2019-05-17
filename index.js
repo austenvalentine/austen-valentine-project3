@@ -51,6 +51,8 @@ $(function() {
             });
         },
         init: function(countries) {
+            // build up the DOM cards by cloning the markup
+            // this.cloneCards(12);
             this.pickCountriesSubset(countries);
             this.dealCards();
         },
@@ -63,6 +65,4 @@ $(function() {
 
     // launch game
     jamApp.init(countryCodes);
-    
-
 });
