@@ -11,13 +11,14 @@ $(function() {
         startButton: $('button.start'),
         splash: $('.splash'),
         guessDisplay: $('.guess-display'),
-        gameBoard: [],
+        cardsInPlay: [],
         countriesSubset: [],
         splashGo: function (){
             this.splash.removeClass('show');
             this.splash.addClass('hide');
             this.resetBoard();
             this.gameScreen.removeClass('blurred');
+            
         },
         pickCountriesSubset: function (countries){
             this.countriesSubset = [];
@@ -59,12 +60,16 @@ $(function() {
                 $(card1).find(".name").text(country[0]);
                 $(card2).find(".flag").attr(`src`, "assets/flags/" + country[1].toLowerCase() + ".svg");
                 $(card2).find(".name").text(country[0]);
-                this.gameBoard.push(card1, card2);
+                // this is used to keep track of which cards are clickable
+                this.cardsInPlay.push(card1, card2);
             });
         },
         resetBoard: function() {
             this.pickCountriesSubset(this.countries);
             this.dealCards();
+            // don't want to hide on init so face-up shows during splash
+            this.cardsInPlay.forEach(card => $(card).find('.face-up').addClass('hide'));
+            $('.face-up').addClass('hide');
         },
         init: function(countriesData) {
             // stretch countriesData should have a method to retrieve

@@ -180,7 +180,7 @@ img {
 }
 
 .hide {
-  display: none;
+  visibility: hidden;
 }
 
 main {
@@ -365,4 +365,9 @@ main {
 .splash button {
   height: 3rem;
   width: 8rem;
+  text-transform: uppercase;
+}
+
+.splash.hide {
+  display: none;
 }
