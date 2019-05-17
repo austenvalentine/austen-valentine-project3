@@ -12,6 +12,10 @@ img {
     max-width: 100%;
 }
 
+.hide {
+    display: none;
+}
+
 @mixin overlay {
     position: absolute;
     top: 0;
@@ -34,3 +38,4 @@ img {
     align-items: flex-end;
     padding: 15% 10%;
 }
+

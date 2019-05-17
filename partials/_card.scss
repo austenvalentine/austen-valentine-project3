@@ -7,18 +7,18 @@
 
 .face-down {
     @include overlay();
+    @include flex-center();
     background-color: teal;
-    
-    display: none;
 }
 
-// .face-down .card-emblem {}
+.face-down .card-emblem {
+    height: 100%;
+}
 
 .face-up {
     @include overlay();
     @include flex-center();
     background-color: slategray;
-    // display: none;
 }
 
 .face-up .name {

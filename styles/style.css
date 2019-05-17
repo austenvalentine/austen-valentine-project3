@@ -179,6 +179,10 @@ img {
   max-width: 100%;
 }
 
+.hide {
+  display: none;
+}
+
 main {
   height: 100vh;
   background-color: #ababab;
@@ -231,8 +235,24 @@ main {
   right: 0;
   bottom: 0;
   left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   background-color: teal;
-  display: none;
+}
+
+.face-down .card-emblem {
+  height: 100%;
 }
 
 .face-up {
@@ -340,8 +360,4 @@ main {
       -ms-flex-align: center;
           align-items: center;
   background-color: #ffaabbcc;
-}
-
-.splash.hide {
-  display: none;
 }
