@@ -56,3 +56,11 @@
     background-color: #89898988;
 }
 
+@media screen and (max-aspect-ratio: 1/1) {
+    .card {
+        margin: 1vw;
+        width: 30%;
+        height: 10vh;
+        box-shadow: 0 0 0 2px red;
+    }
+}

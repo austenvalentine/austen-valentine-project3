@@ -350,6 +350,16 @@ main {
   background-color: #89898988;
 }
 
+@media screen and (max-aspect-ratio: 1 / 1) {
+  .card {
+    margin: 1vw;
+    width: 30%;
+    height: 10vh;
+    -webkit-box-shadow: 0 0 0 2px red;
+            box-shadow: 0 0 0 2px red;
+  }
+}
+
 .splash.show {
   position: absolute;
   top: 0;
