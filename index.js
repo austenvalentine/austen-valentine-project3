@@ -83,27 +83,27 @@ $(function() {
                         jamApp.pickPair = [];
                     } else if (!this.childNodes[3].classList.contains('hide')) {
                         // current card is not interactive
-                        console.log("nope. you can't click me!");
                         return undefined;
                     } else if (jamApp.pickPair.length === 0){
-                        console.log('picking first card');
                         jamApp.pickPair.push(this);
                         // show first card face-up side
                         this.childNodes[3].classList.toggle('hide');
                     } else if (jamApp.pickPair.length === 1) {
                         jamApp.guesses++;
                         jamApp.guessDisplay.text(jamApp.guesses);
-                        console.log('picking second card');
                         jamApp.pickPair.push(this);
                         // show first card face-up side
                         this.childNodes[3].classList.toggle('hide');
-                        
                         const firstPick = jamApp.pickPair[0].childNodes[3].childNodes[1].innerText;
                         const secondPick = jamApp.pickPair[1].childNodes[3].childNodes[1].innerText;
-                        console.log('picked: ', firstPick, secondPick);
                         if (firstPick === secondPick) {
-                            console.log('match', firstPick, secondPick);
+                            // yay! a match! show the checkmarks
+                            jamApp.pickPair.forEach(card => {
+                                card.childNodes[3].lastElementChild.classList.toggle('hide');
+                            })
+                            // clear the pickPair so that the successful match cards stay face-up visible
                             jamApp.pickPair = [];
+
                         }
                     }
                 })
