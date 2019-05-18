@@ -39,7 +39,7 @@ countryData = [
     ["Niger", "NE"],
     ["Nigeria", "NG"],
     ["Rwanda", "RW"],
-    ["Sahrawi*", "SW"],
+    ["Sahrawi", "SW"],
     ["Sao Tome and Principe", "ST"],
     ["Senegal", "SN"],
     ["Seychelles", "SC"],
