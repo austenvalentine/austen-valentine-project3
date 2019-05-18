@@ -1,6 +1,7 @@
 .site-wrapper {
     margin: 0 auto;
     width: 90%;
+    max-width: 1440px;
 }
 
 * {
@@ -38,6 +39,11 @@ img {
     flex-flow: row;
     justify-content: flex-end;
     align-items: flex-end;
-    padding: 15% 10%;
+    padding: 5% 10%;
 }
 
+@media screen and (max-aspect-ratio: 1/1) {
+    .site-wrapper {
+        width: 95%;
+    }
+}

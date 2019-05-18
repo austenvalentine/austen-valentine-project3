@@ -168,6 +168,7 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
 .site-wrapper {
   margin: 0 auto;
   width: 90%;
+  max-width: 1440px;
 }
 
 * {
@@ -181,6 +182,12 @@ img {
 
 .hide {
   visibility: hidden;
+}
+
+@media screen and (max-aspect-ratio: 1 / 1) {
+  .site-wrapper {
+    width: 95%;
+  }
 }
 
 main {
@@ -307,7 +314,7 @@ main {
   -webkit-box-align: end;
       -ms-flex-align: end;
           align-items: flex-end;
-  padding: 15% 10%;
+  padding: 5% 10%;
   text-align: right;
   z-index: 2;
   color: #efefef;
@@ -321,7 +328,7 @@ main {
 }
 
 .face-up .flag {
-  padding: 5%;
+  padding: 2.5%;
   -o-object-fit: fit;
      object-fit: fit;
   -o-object-position: center;
@@ -355,8 +362,9 @@ main {
     margin: 1vw;
     width: 30%;
     height: 10vh;
-    -webkit-box-shadow: 0 0 0 2px red;
-            box-shadow: 0 0 0 2px red;
+  }
+  .face-up .name {
+    font-size: .75rem;
   }
 }
 
@@ -380,6 +388,7 @@ main {
       -ms-flex-pack: center;
           justify-content: center;
   z-index: 10;
+  text-align: center;
   background-color: #ffaabbcc;
 }
 

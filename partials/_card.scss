@@ -45,7 +45,7 @@
 }
 
 .face-up .flag {
-    padding: 5%;
+    padding: 2.5%;
     object-fit: fit;
     object-position: center;
 }
@@ -61,6 +61,8 @@
         margin: 1vw;
         width: 30%;
         height: 10vh;
-        box-shadow: 0 0 0 2px red;
+    }
+    .face-up .name {
+        font-size: .75rem;
     }
 }
