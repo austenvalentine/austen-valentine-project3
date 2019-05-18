@@ -210,7 +210,7 @@ main {
   background-color: tan;
   list-style-type: none;
   height: 70vh;
-  padding: 2vh 0;
+  padding: 2%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -230,10 +230,9 @@ main {
 }
 
 .card {
-  width: 20%;
-  margin: 0 2vh;
+  width: 24%;
+  height: 30%;
   position: relative;
-  height: 20vh;
   border-radius: 5px;
 }
 
@@ -359,9 +358,8 @@ main {
 
 @media screen and (max-aspect-ratio: 1 / 1) {
   .card {
-    margin: 1vw;
     width: 30%;
-    height: 10vh;
+    height: 20%;
   }
   .face-up .name {
     font-size: .75rem;

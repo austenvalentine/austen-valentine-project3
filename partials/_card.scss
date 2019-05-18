@@ -1,8 +1,7 @@
 .card {
-    width: 20%;
-    margin: 0 2vh;
+    width: 24%;
+    height: 30%;
     position: relative;
-    height: 20vh;
     border-radius: 5px;
 }
 
@@ -58,9 +57,8 @@
 
 @media screen and (max-aspect-ratio: 1/1) {
     .card {
-        margin: 1vw;
         width: 30%;
-        height: 10vh;
+        height: 20%;
     }
     .face-up .name {
         font-size: .75rem;
