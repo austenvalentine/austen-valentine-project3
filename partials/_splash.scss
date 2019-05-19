@@ -3,7 +3,14 @@
     @include flex-center();
     z-index: 10;  
     text-align: center;
+}
+
+.splash {
     background-color: #ffaabbcc;
+}
+
+.winner {
+    background-color: #aabbffcc;
 }
 
 .splash button, .winner button {
