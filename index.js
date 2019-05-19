@@ -21,7 +21,6 @@ $(function() {
         countriesSubset: [],
         pickPair: [],
         splashGo: function (){
-            this.splash.removeClass('show');
             this.splash.addClass('hide');
             this.resetBoard();
             this.gameScreen.removeClass('blurred');
@@ -74,6 +73,9 @@ $(function() {
             
         },
         resetBoard: function() {
+            this.matchesGot = 0;
+            this.guesses = 0;
+            this.guessDisplay.text(this.guesses);
             this.pickCountriesSubset(this.countries);
             this.matches = 0;
             this.matchesGotDisplay.text(this.matchesGot);
@@ -81,43 +83,7 @@ $(function() {
             // don't want to hide on init so face-up shows during splash
             document.querySelectorAll('.face-up').forEach(face => face.classList.add('hide'));
             // set all cards to listen
-            this.cardsInPlay.forEach(card => {
-                card.addEventListener('click', function() {
-                    // player had a chance to see wrong picks before resetting pair
-                    if (jamApp.pickPair.length === 2) {
-                        jamApp.pickPair.forEach(card => {
-                            card.childNodes[3].classList.toggle('hide');
-                        })
-                        jamApp.pickPair = [];
-                    } else if (!this.childNodes[3].classList.contains('hide')) {
-                        // current card is not interactive
-                        return undefined;
-                    } else if (jamApp.pickPair.length === 0){
-                        jamApp.pickPair.push(this);
-                        // show first card face-up side
-                        this.childNodes[3].classList.toggle('hide');
-                    } else if (jamApp.pickPair.length === 1) {
-                        jamApp.guesses++;
-                        jamApp.guessDisplay.text(jamApp.guesses);
-                        jamApp.pickPair.push(this);
-                        // show first card face-up side
-                        this.childNodes[3].classList.toggle('hide');
-                        const firstPick = jamApp.pickPair[0].childNodes[3].childNodes[1].innerText;
-                        const secondPick = jamApp.pickPair[1].childNodes[3].childNodes[1].innerText;
-                        if (firstPick === secondPick) {
-                            // yay! a match! show the checkmarks
-                            jamApp.matchesGot++;
-                            jamApp.matchesGotDisplay.text(jamApp.matchesGot);
-                            jamApp.pickPair.forEach(card => {
-                                card.childNodes[3].lastElementChild.classList.toggle('hide');
-                            })
-                            // clear the pickPair so that the successful match cards stay face-up visible
-                            jamApp.pickPair = [];
-
-                        }
-                    }
-                })
-            });
+            this.handleCardClick();
             
         },
         init: function(countriesData) {
@@ -129,6 +95,52 @@ $(function() {
             this.dealCards();
         },
         handleCardClick: function() {
+            this.cardsInPlay.forEach(card => {
+                card.addEventListener('click', function () {
+                    // player had a chance to see wrong picks before resetting pair
+                    if (jamApp.pickPair.length === 2) {
+                        jamApp.pickPair.forEach(card => {
+                            card.childNodes[3].classList.toggle('hide');
+                        })
+                        jamApp.pickPair = [];
+                    } else if (!this.childNodes[3].classList.contains('hide')) {
+                        // current card is not interactive
+                        return undefined;
+                    } else if (jamApp.pickPair.length === 0) {
+                        jamApp.pickPair.push(this);
+                        // show first card face-up side
+                        this.childNodes[3].classList.toggle('hide');
+                    } else if (jamApp.pickPair.length === 1) {
+                        jamApp.guesses++;
+                        jamApp.guessDisplay.text(jamApp.guesses);
+                        jamApp.pickPair.push(this);
+                        // show first card face-up side
+                        this.childNodes[3].classList.toggle('hide');
+                        // there should be some kind of setter for these text values
+                        const firstPick = jamApp.pickPair[0].childNodes[3].childNodes[1].innerText;
+                        const secondPick = jamApp.pickPair[1].childNodes[3].childNodes[1].innerText;
+                        if (firstPick === secondPick) {
+                            // yay! a match! show the checkmarks
+                            jamApp.matchesGot++;
+                            jamApp.matchesGotDisplay.text(jamApp.matchesGot);
+                            jamApp.pickPair.forEach(card => {
+                                // there should be a shorter reference to the checkmark element
+                                card.childNodes[3].lastElementChild.classList.toggle('hide');
+                            })
+                            // clear the pickPair so that the successful match cards stay face-up visible
+                            jamApp.pickPair = [];
+                            
+                            // game over
+                            if (jamApp.matchesGot == jamApp.countriesSubsetSize) {
+                                jamApp.splash.removeClass('hide');
+                            }
+                                
+                            
+
+                        }
+                    }
+                })
+            });
              
         },
 
@@ -138,6 +150,7 @@ $(function() {
     // events - splash screen
     // bind for method to refer to jamApp instead of startButton
     jamApp.startButton.on('click', jamApp.splashGo.bind(jamApp));
+    
         
     // launch game
     jamApp.init(countryData);
