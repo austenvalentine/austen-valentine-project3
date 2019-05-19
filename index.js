@@ -73,6 +73,7 @@ $(function() {
             
         },
         resetBoard: function() {
+            this.pickPair = [];
             this.matchesGot = 0;
             this.guesses = 0;
             this.guessDisplay.text(this.guesses);
@@ -81,9 +82,14 @@ $(function() {
             this.matchesGotDisplay.text(this.matchesGot);
             this.dealCards();
             // don't want to hide on init so face-up shows during splash
-            document.querySelectorAll('.face-up').forEach(face => face.classList.add('hide'));
-            // set all cards to listen
-            this.handleCardClick();
+            document.querySelectorAll('.face-up').forEach(face => {
+                // hide the face-up
+                face.classList.add('hide');
+                // hide the check-mark
+                face.children[2].classList.add('hide');
+            });
+            
+            
             
         },
         init: function(countriesData) {
@@ -93,10 +99,13 @@ $(function() {
             this.cloneCards(11);
             this.pickCountriesSubset(this.countries);
             this.dealCards();
+            // set all cards to listen
+            this.handleCardClick();
         },
         handleCardClick: function() {
             this.cardsInPlay.forEach(card => {
                 card.addEventListener('click', function () {
+                    console.log('picked: ', jamApp.pickPair.length);
                     // player had a chance to see wrong picks before resetting pair
                     if (jamApp.pickPair.length === 2) {
                         jamApp.pickPair.forEach(card => {
