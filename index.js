@@ -10,8 +10,12 @@ $(function() {
         gameScreen: $('.game-screen'),
         startButton: $('button.start'),
         splash: $('.splash'),
+        countriesSubsetSize: 6,
         guessDisplay: $('.guess-display'),
+        matchesGotDisplay: $('.matches-got'),
+        matchesNeedDisplay: $('.matches-need'),
         guesses: 0,
+        matchesGot: 0,
         cardsInPlay: [],
         cardsMatched: [],
         countriesSubset: [],
@@ -30,11 +34,13 @@ $(function() {
             // to preserve data for future game rounds
             const copyOfCountriesData = this.countriesData.filter(elt => true);
             // pick the subset of countries to match
-            for (let i = 0; i < 6; i++) {
+            for (let i = 0; i < this.countriesSubsetSize; i++) {
                 const randIndex = Math.floor(Math.random() * copyOfCountriesData.length);
                 const randCountry = copyOfCountriesData.splice(randIndex, 1)[0];
                 this.countriesSubset.push(randCountry);
             };
+            this.matchesNeedDisplay.text(this.countriesSubset.length);
+
         },
         cloneCards: function (numberOfClones){
             // grab card container from DOM
@@ -69,6 +75,8 @@ $(function() {
         },
         resetBoard: function() {
             this.pickCountriesSubset(this.countries);
+            this.matches = 0;
+            this.matchesGotDisplay.text(this.matchesGot);
             this.dealCards();
             // don't want to hide on init so face-up shows during splash
             document.querySelectorAll('.face-up').forEach(face => face.classList.add('hide'));
@@ -98,6 +106,8 @@ $(function() {
                         const secondPick = jamApp.pickPair[1].childNodes[3].childNodes[1].innerText;
                         if (firstPick === secondPick) {
                             // yay! a match! show the checkmarks
+                            jamApp.matchesGot++;
+                            jamApp.matchesGotDisplay.text(jamApp.matchesGot);
                             jamApp.pickPair.forEach(card => {
                                 card.childNodes[3].lastElementChild.classList.toggle('hide');
                             })
