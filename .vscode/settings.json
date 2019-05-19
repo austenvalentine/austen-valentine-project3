@@ -4,11 +4,6 @@
             "format": "expanded",
             "extensionName": ".css",
             "savePath": "/styles"
-        },
-        {
-            "extensionName": ".min.css",
-            "format": "compressed",
-            "savePath": "/dist/styles"
         }
     ],
     "liveSassCompile.settings.excludeList": [
