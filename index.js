@@ -7,6 +7,7 @@ $(function() {
         // or a web api
         countriesData: [],
         // cache selectors
+        footer: $('footer'),
         gameScreen: $('.game-screen'),
         startButton: $('button.start'),
         splash: $('.splash'),
@@ -24,8 +25,27 @@ $(function() {
             this.splash.addClass('hide');
             this.resetBoard();
             this.gameScreen.removeClass('blurred');
-            
         },
+        // end of splashGo
+        winner: function () {
+            this.gameScreen.addClass('blurred');
+            const win = `
+                <div class="winner">
+                    <h1>You won in only <span class="guess-display">${this.guesses}</span> guesses!</h1>
+                    <button class="reset">
+                        <h2>Reset</h2>
+                    </button>
+                </div>
+            `;
+            this.footer.append(win);
+            // put this in an event listener
+            $('.reset').click(function () {
+                jamApp.footer.empty();
+                jamApp.splash.removeClass('hide');
+            });
+            // 
+        },  
+        //end of winner
         pickCountriesSubset: function (countries){
             this.countriesSubset = [];
             // countries parameter needs an array of arrays
@@ -41,6 +61,7 @@ $(function() {
             this.matchesNeedDisplay.text(this.countriesSubset.length);
 
         },
+        // end of pickCountriesSubset
         cloneCards: function (numberOfClones){
             // grab card container from DOM
             let donorCard = document.querySelector('.card');
@@ -49,6 +70,7 @@ $(function() {
                 $('.game-board').append(donorCard.cloneNode(true));
             }
         },
+        // end of cloneCards
         dealCards: function (){
             // scoop up all the cards from the DOM into
             // a deck of cards - convert the nodeList to array
@@ -70,8 +92,8 @@ $(function() {
                 // this is used to keep track of which cards are clickable
                 this.cardsInPlay.push(card1, card2);
             });
-            
         },
+        // end of dealCards
         resetBoard: function() {
             this.pickPair = [];
             this.matchesGot = 0;
@@ -88,10 +110,8 @@ $(function() {
                 // hide the check-mark
                 face.children[2].classList.add('hide');
             });
-            
-            
-            
         },
+        // end of resetBoard    
         init: function(countriesData) {
             // stretch countriesData should have a method to retrieve
             // data instead of being passed in as argument
@@ -102,14 +122,16 @@ $(function() {
             // set all cards to listen
             this.handleCardClick();
         },
+        // end of init
         handleCardClick: function() {
+            // this is the game logic
             this.cardsInPlay.forEach(card => {
                 card.addEventListener('click', function () {
                     console.log('picked: ', jamApp.pickPair.length);
                     // player had a chance to see wrong picks before resetting pair
                     if (jamApp.pickPair.length === 2) {
                         jamApp.pickPair.forEach(card => {
-                            card.childNodes[3].classList.toggle('hide');
+                            card.children[1].classList.toggle('hide');
                         })
                         jamApp.pickPair = [];
                     } else if (!this.childNodes[3].classList.contains('hide')) {
@@ -118,16 +140,16 @@ $(function() {
                     } else if (jamApp.pickPair.length === 0) {
                         jamApp.pickPair.push(this);
                         // show first card face-up side
-                        this.childNodes[3].classList.toggle('hide');
+                        this.children[1].classList.toggle('hide');
                     } else if (jamApp.pickPair.length === 1) {
                         jamApp.guesses++;
                         jamApp.guessDisplay.text(jamApp.guesses);
                         jamApp.pickPair.push(this);
                         // show first card face-up side
-                        this.childNodes[3].classList.toggle('hide');
+                        this.children[1].classList.toggle('hide');
                         // there should be some kind of setter for these text values
-                        const firstPick = jamApp.pickPair[0].childNodes[3].childNodes[1].innerText;
-                        const secondPick = jamApp.pickPair[1].childNodes[3].childNodes[1].innerText;
+                        const firstPick = jamApp.pickPair[0].children[1].children[0].innerText;
+                        const secondPick = jamApp.pickPair[1].children[1].children[0].innerText;
                         if (firstPick === secondPick) {
                             // yay! a match! show the checkmarks
                             jamApp.matchesGot++;
@@ -141,17 +163,14 @@ $(function() {
                             
                             // game over
                             if (jamApp.matchesGot == jamApp.countriesSubsetSize) {
-                                jamApp.splash.removeClass('hide');
+                                jamApp.winner();
                             }
-                                
-                            
-
                         }
                     }
                 })
             });
-             
         },
+        // end of handleCardClick
 
     };
 
