@@ -215,7 +215,7 @@ main {
 
 .game-board {
   background-color: tan;
-  list-style-type: none;
+  list-style: none;
   height: 70vh;
   padding: 2%;
   display: -webkit-box;

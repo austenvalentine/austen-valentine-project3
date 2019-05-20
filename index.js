@@ -69,6 +69,10 @@ $(function() {
             for (let i = 0; i < numberOfClones ; i++) {
                 $('.game-board').append(donorCard.cloneNode(true));
             }
+            Array.from(document.querySelectorAll('.card')).forEach((card, index) =>{
+                card.setAttribute('tabindex', index + 1)
+                .setAttribute('aria-label', index + 1);
+            });
         },
         // end of cloneCards
         dealCards: function (){
@@ -127,7 +131,6 @@ $(function() {
             // this is the game logic
             this.cardsInPlay.forEach(card => {
                 card.addEventListener('click', function () {
-                    console.log('picked: ', jamApp.pickPair.length);
                     // player had a chance to see wrong picks before resetting pair
                     if (jamApp.pickPair.length === 2) {
                         jamApp.pickPair.forEach(card => {
