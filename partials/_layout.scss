@@ -8,6 +8,11 @@
     padding: 0;
     margin: 0;
 }
+// chrome mobile address-bar hack
+// https://developers.google.com/web/updates/2016/12/url-bar-resizing
+ body {
+     height: 100%;
+ }
 
 .game-full-screen {
     height: 100vh;

@@ -31,7 +31,7 @@ $(function() {
             this.gameScreen.addClass('blurred');
             const win = `
                 <div class="winner">
-                    <h1>You won in only <span class="guess-display">${this.guesses}</span> guesses!</h1>
+                    <h1>You won in <span class="guess-display">${this.guesses}</span> guesses!</h1>
                     <button class="reset">
                         <h2>Reset</h2>
                     </button>

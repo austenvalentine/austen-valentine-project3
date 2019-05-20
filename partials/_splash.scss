@@ -1,6 +1,11 @@
 .splash, .winner {
-    @include overlay();
     @include flex-center();
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    // https://developers.google.com/web/updates/2016/12/url-bar-resizing
+    height: 100vh;
     z-index: 10;  
     text-align: center;
 }
