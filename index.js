@@ -31,19 +31,20 @@ $(function() {
             this.gameScreen.addClass('blurred');
             const win = `
                 <div class="winner">
-                    <h1>You won in only <span class="guess-display">${this.guesses}</span> guesses!</h1>
+                    <h1>You won in<span class="guess-display">${this.guesses}</span> guesses!</h1>
                     <button class="reset">
                         <h2>Reset</h2>
                     </button>
                 </div>
             `;
             this.footer.append(win);
+            
             // put this in an event listener
             $('.reset').click(function () {
                 jamApp.footer.empty();
                 jamApp.splash.removeClass('hide');
             });
-            // 
+            
         },  
         //end of winner
         pickCountriesSubset: function (countries){
@@ -69,10 +70,7 @@ $(function() {
             for (let i = 0; i < numberOfClones ; i++) {
                 $('.game-board').append(donorCard.cloneNode(true));
             }
-            Array.from(document.querySelectorAll('.card')).forEach((card, index) =>{
-                card.setAttribute('tabindex', index + 1)
-                .setAttribute('aria-label', index + 1);
-            });
+            
         },
         // end of cloneCards
         dealCards: function (){

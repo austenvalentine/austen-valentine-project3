@@ -5,17 +5,22 @@
     border-radius: 5px;
 }
 
+.card:focus {
+    box-shadow: 0 0 0 5px cyan;
+}
+
+.face-down:hover {
+    filter: brightness(120%);
+}
+.face-down:active {
+    filter: brightness(120%)
+            hue-rotate(15deg);
+}
+
 .face-down {
     @include overlay();
     @include flex-center();
     background-color: teal;
-}
-
-.face-down:hover {
-    box-shadow: 0 0 0 1vw yellow;
-}
-.face-down:active {
-    box-shadow: 0 0 0 10px orange;
 }
 
 .face-down .card-emblem {

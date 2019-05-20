@@ -243,6 +243,21 @@ main {
   border-radius: 5px;
 }
 
+.card:focus {
+  -webkit-box-shadow: 0 0 0 5px cyan;
+          box-shadow: 0 0 0 5px cyan;
+}
+
+.face-down:hover {
+  -webkit-filter: brightness(120%);
+          filter: brightness(120%);
+}
+
+.face-down:active {
+  -webkit-filter: brightness(120%) hue-rotate(15deg);
+          filter: brightness(120%) hue-rotate(15deg);
+}
+
 .face-down {
   position: absolute;
   top: 0;
@@ -263,16 +278,6 @@ main {
       -ms-flex-pack: center;
           justify-content: center;
   background-color: teal;
-}
-
-.face-down:hover {
-  -webkit-box-shadow: 0 0 0 1vw yellow;
-          box-shadow: 0 0 0 1vw yellow;
-}
-
-.face-down:active {
-  -webkit-box-shadow: 0 0 0 10px orange;
-          box-shadow: 0 0 0 10px orange;
 }
 
 .face-down .card-emblem {
