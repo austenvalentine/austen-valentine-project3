@@ -38,7 +38,8 @@ $(function() {
                 </div>
             `;
             this.footer.append(win);
-            
+            // focus on the button and add listener for keyboard navigation
+            this.footer.children('.winner').children('h2').focus();
             // put this in an event listener
             $('.reset').click(function () {
                 jamApp.footer.empty();
@@ -70,7 +71,10 @@ $(function() {
             for (let i = 0; i < numberOfClones ; i++) {
                 $('.game-board').append(donorCard.cloneNode(true));
             }
-            
+            Array.from(document.querySelectorAll('.card')).forEach((card, index) =>{
+                card.setAttribute('tabindex', index + 1);
+                card.setAttribute('aria-label', index + 1);
+            });
         },
         // end of cloneCards
         dealCards: function (){
@@ -93,6 +97,10 @@ $(function() {
                 $(card2).find(".name").text(country[0]);
                 // this is used to keep track of which cards are clickable
                 this.cardsInPlay.push(card1, card2);
+                // Add screenreader capability
+                Array.from(document.querySelectorAll('.card')).forEach((card, index) =>{
+                    card.setAttribute('tabindex', index + 1);
+                });
             });
         },
         // end of dealCards
@@ -184,3 +192,5 @@ $(function() {
     // launch game
     jamApp.init(countryData);
 });
+
+
