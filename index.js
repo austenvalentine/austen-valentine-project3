@@ -32,7 +32,7 @@ $(function() {
             this.gameScreen.addClass('blurred');
             const win = `
                 <div class="winner">
-                    <label for="reset"><h1 aria-live="polite">You won in <span class="guess-display">${this.guesses}</span> guesses!</h1></label>
+                    <label for="reset"><p aria-live="polite">You won in <span class="guess-display">${this.guesses}</span> guesses!</p></label>
                     <button value="reset" class="reset" tabindex=1>
                         <strong>Reset</strong>
                     </button>
@@ -130,6 +130,8 @@ $(function() {
             this.cloneCards(11);
             this.pickCountriesSubset(this.countries);
             this.dealCards();
+            // focus on splashGo button
+            this.splash.children('.start').focus();
             //
             // set all cards to listen
             this.handleCardClick();
@@ -183,8 +185,8 @@ $(function() {
                             // show the checkmarks
                             jamApp.pickPair.forEach(card => {
                                 // there should be a shorter reference to the checkmark element
-
-                                card.children[0].children[1].lastElementChild.classList.toggle('hide');
+                                card.firstElementChild.children[1].lastElementChild.classList.toggle('hide');
+                                card.firstElementChild.setAttribute('tabindex', '-1');
                             })
                             // clear the pickPair so that the successful match cards stay face-up visible
                             jamApp.pickPair = [];
