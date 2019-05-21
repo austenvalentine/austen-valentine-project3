@@ -9,37 +9,40 @@
 </head>
 <body>
     <header>
-        <!-- splash screen is in mark-up so that the game is more likely to show up in search engines -->
-        <div class="splash" autofocus>
-            <h1>Pan-African MemoJam</h1>
-            <h2>Flag Match Extravaganza</h2>
-            <button class="start" tabindex=1 autofocus>
-                <h2>Go!</h2>
-            </button>
-        </div>
+        
     </header>
     <main>
+        <!-- splash screen is in mark-up so that the game is more likely to show up in search engines -->
+        <div class="splash">
+            <label for="start">
+                <h1 aria-live="polite">Pan-African MemoJam</h1>
+                <h2>Flag Match Extravaganza</h2>
+            </label>
+            <button value="start" class="start" tabindex=1 autofocus>
+                <strong>Go!</strong>
+            </button>
+        </div>
         <div class="game-screen blurred site-wrapper">
             <div class="guesses-box">
                 <h2>Pan-African MemoJam</h2>
-                <h3>Guesses: <span class="guess-display">0</span> </h3>
-                <h3>Matches: <span class="matches-got">0</span>/<span class="matches-need">0</span></h3>
+                <p><span class="guess-display" aria-role="status" aria-live="polite">Guesses: 0</span> </p>
+                <p><span class="matches-got" aria-role="status" aria-live="polite">Matches: 0 of 0</span></p>
             </div>
-            <ol class="game-board">
+            <ol class="game-board" aria-live="polite" aria-role="log">
                 <li class="card">
-                    <button tabindex=2>
-                        <div class="face-down">
+                    <button tabindex=2 aria-label="card 1">
+                        <div class="face-down" >
                             <img src="assets/africa-continent.svg" alt="" class="card-emblem">
                         </div>
-                        <div class="face-up">
-                            <h4 class="name"></h4>
+                        <figure class="face-up">
+                            <figcaption class="name"></figcaption>
                             <div class="wrap-image">
                                 <img src="" alt="" class="flag">
                             </div>
                             <div class="wrap-image hide">
-                                <img class="check-mark " src="assets/check-mark.svg"  alt="check mark">
+                                <img class="check-mark " src="assets/check-mark.svg"  alt="successful match">
                             </div>
-                        </div>
+                        </figure>
                     </button>
                 </li>
             </ol>
@@ -49,7 +52,7 @@
             </h6>
         </div>
     </main>
-    <footer>
+    <footer aria-live="assertive">
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"

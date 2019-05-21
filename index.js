@@ -14,7 +14,7 @@ $(function() {
         countriesSubsetSize: 6,
         guessDisplay: $('.guess-display'),
         matchesGotDisplay: $('.matches-got'),
-        matchesNeedDisplay: $('.matches-need'),
+        // matchesNeedDisplay: $('.matches-need'),
         guesses: 0,
         matchesGot: 0,
         cardsInPlay: [],
@@ -32,9 +32,9 @@ $(function() {
             this.gameScreen.addClass('blurred');
             const win = `
                 <div class="winner">
-                    <h1>You won in <span class="guess-display">${this.guesses}</span> guesses!</h1>
-                    <button class="reset" tabindex=20>
-                        <h2>Reset</h2>
+                    <label for="reset"><h1 aria-live="polite">You won in <span class="guess-display">${this.guesses}</span> guesses!</h1></label>
+                    <button value="reset" class="reset" tabindex=1>
+                        <strong>Reset</strong>
                     </button>
                 </div>
             `;
@@ -47,7 +47,6 @@ $(function() {
                 jamApp.splash.removeClass('hide');
                 jamApp.splash.children('.start').focus();
             });
-            
         },  
         //end of winner
         pickCountriesSubset: function (countries){
@@ -62,7 +61,7 @@ $(function() {
                 const randCountry = copyOfCountriesData.splice(randIndex, 1)[0];
                 this.countriesSubset.push(randCountry);
             };
-            this.matchesNeedDisplay.text(this.countriesSubset.length);
+            // this.matchesNeedDisplay.text(`of ${this.countriesSubset.length}`);
 
         },
         // end of pickCountriesSubset
@@ -91,14 +90,17 @@ $(function() {
                 const card2 = deck.splice(cardIndex2, 1)[0];
                 // assign current country's flag and name to the pair
                 $(card1).find(".flag").attr(`src`, "assets/flags/" + country[1].toLowerCase() + ".svg");
+                // $(card1).find(".flag").attr(`alt`, country[0]);
                 $(card1).find(".name").text(country[0]);
                 $(card2).find(".flag").attr(`src`, "assets/flags/" + country[1].toLowerCase() + ".svg");
+                // $(card2).find(".flag").attr(`alt`, country[0]);
                 $(card2).find(".name").text(country[0]);
                 // this is used to keep track of which cards are clickable
                 this.cardsInPlay.push(card1, card2);
                 // Add screenreader capability by putting tab index on the buttons
                 Array.from(document.querySelectorAll('.card')).forEach((card, index) =>{
                     card.firstElementChild.setAttribute('tabindex', index + 2);
+                    card.firstElementChild.setAttribute('aria-label', `card ${index + 1}`);
                 });
             });
         },
@@ -107,10 +109,10 @@ $(function() {
             this.pickPair = [];
             this.matchesGot = 0;
             this.guesses = 0;
-            this.guessDisplay.text(this.guesses);
+            this.guessDisplay.text(`Guesses: ${this.guesses}`);
             this.pickCountriesSubset(this.countries);
             this.matches = 0;
-            this.matchesGotDisplay.text(this.matchesGot);
+            this.matchesGotDisplay.text(`Matches: ${this.matchesGot} of ${this.countriesSubsetSize}`);
             this.dealCards();
             // don't want to hide on init so face-up shows during splash
             document.querySelectorAll('.face-up').forEach(face => {
@@ -128,6 +130,7 @@ $(function() {
             this.cloneCards(11);
             this.pickCountriesSubset(this.countries);
             this.dealCards();
+            //
             // set all cards to listen
             this.handleCardClick();
         },
@@ -163,7 +166,7 @@ $(function() {
                     } else if (jamApp.pickPair.length === 1) {
                         // 2 picks count as one more guess
                         jamApp.guesses++;
-                        jamApp.guessDisplay.text(jamApp.guesses);
+                        jamApp.guessDisplay.text(`Guesses: ${jamApp.guesses}`);
                         // push the li containing the target event's button
                         jamApp.pickPair.push(this.parentNode);
                         // show first card face-up side
@@ -176,7 +179,7 @@ $(function() {
                         if (firstPick === secondPick) {
                             // increase the match score and update the score display
                             jamApp.matchesGot++;
-                            jamApp.matchesGotDisplay.text(jamApp.matchesGot);
+                            jamApp.matchesGotDisplay.text(`Matches: ${jamApp.matchesGot} of ${jamApp.countriesSubsetSize}`);
                             // show the checkmarks
                             jamApp.pickPair.forEach(card => {
                                 // there should be a shorter reference to the checkmark element
