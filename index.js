@@ -31,19 +31,20 @@ $(function() {
             this.gameScreen.addClass('blurred');
             const win = `
                 <div class="winner">
-                    <h1>You won in<span class="guess-display">${this.guesses}</span> guesses!</h1>
-                    <button class="reset">
+                    <h1>You won in <span class="guess-display">${this.guesses}</span> guesses!</h1>
+                    <button class="reset" aria-label="card 1" tabindex=20>
                         <h2>Reset</h2>
                     </button>
                 </div>
             `;
             this.footer.append(win);
             // focus on the button and add listener for keyboard navigation
-            this.footer.children('.winner').children('h2').focus();
+            this.footer.children('.winner').children('button').focus();
             // put this in an event listener
             $('.reset').click(function () {
                 jamApp.footer.empty();
                 jamApp.splash.removeClass('hide');
+                jamApp.splash.children('.start').focus();
             });
             
         },  
@@ -71,10 +72,7 @@ $(function() {
             for (let i = 0; i < numberOfClones ; i++) {
                 $('.game-board').append(donorCard.cloneNode(true));
             }
-            Array.from(document.querySelectorAll('.card')).forEach((card, index) =>{
-                card.setAttribute('tabindex', index + 1);
-                card.setAttribute('aria-label', index + 1);
-            });
+           
         },
         // end of cloneCards
         dealCards: function (){
@@ -97,9 +95,9 @@ $(function() {
                 $(card2).find(".name").text(country[0]);
                 // this is used to keep track of which cards are clickable
                 this.cardsInPlay.push(card1, card2);
-                // Add screenreader capability
+                // Add screenreader capability by putting tab index on the buttons
                 Array.from(document.querySelectorAll('.card')).forEach((card, index) =>{
-                    card.setAttribute('tabindex', index + 1);
+                    card.firstElementChild.setAttribute('tabindex', index + 2);
                 });
             });
         },
@@ -136,36 +134,53 @@ $(function() {
         handleCardClick: function() {
             // this is the game logic
             this.cardsInPlay.forEach(card => {
-                card.addEventListener('click', function () {
-                    // player had a chance to see wrong picks before resetting pair
+                // add event listener to the buttons
+                card.firstElementChild.addEventListener('click', function () {
+                    
+                    // player had a chance to see wrong picks before re-hiding pair
                     if (jamApp.pickPair.length === 2) {
                         jamApp.pickPair.forEach(card => {
-                            card.children[1].classList.toggle('hide');
+                            // set the picked face-ups to hide again
+                            card.firstElementChild.children[1].classList.toggle('hide');
                         })
+                        // empty the pickPair for the next guess
                         jamApp.pickPair = [];
-                    } else if (!this.childNodes[3].classList.contains('hide')) {
-                        // current card is not interactive
+                    
+                    // the clicked card is face-up and no longer interactive    
+                    } else if (!this.children[1].classList.contains('hide')) {
+                        // face-up is not hidden. so current card is not interactive. so do nothing
                         return undefined;
+
+                    // take the first pick
                     } else if (jamApp.pickPair.length === 0) {
-                        jamApp.pickPair.push(this);
+                        // push the li containing the target event's button
+                        jamApp.pickPair.push(this.parentNode);
                         // show first card face-up side
                         this.children[1].classList.toggle('hide');
+                        
+                        // take the second pick
                     } else if (jamApp.pickPair.length === 1) {
+                        // 2 picks count as one more guess
                         jamApp.guesses++;
                         jamApp.guessDisplay.text(jamApp.guesses);
-                        jamApp.pickPair.push(this);
+                        // push the li containing the target event's button
+                        jamApp.pickPair.push(this.parentNode);
                         // show first card face-up side
                         this.children[1].classList.toggle('hide');
-                        // there should be some kind of setter for these text values
-                        const firstPick = jamApp.pickPair[0].children[1].children[0].innerText;
-                        const secondPick = jamApp.pickPair[1].children[1].children[0].innerText;
+                        // there should be some kind of property and getter-setter for these text values
+                        // pickPair[card]-> button -> face-up -> heading -> country-name
+                        const firstPick = jamApp.pickPair[0].firstElementChild.children[1].children[0].innerText;
+                        const secondPick = jamApp.pickPair[1].firstElementChild.children[1].children[0].innerText;
+                        // yay! a match!
                         if (firstPick === secondPick) {
-                            // yay! a match! show the checkmarks
+                            // increase the match score and update the score display
                             jamApp.matchesGot++;
                             jamApp.matchesGotDisplay.text(jamApp.matchesGot);
+                            // show the checkmarks
                             jamApp.pickPair.forEach(card => {
                                 // there should be a shorter reference to the checkmark element
-                                card.childNodes[3].lastElementChild.classList.toggle('hide');
+
+                                card.children[0].children[1].lastElementChild.classList.toggle('hide');
                             })
                             // clear the pickPair so that the successful match cards stay face-up visible
                             jamApp.pickPair = [];

@@ -9,16 +9,16 @@
 </head>
 <body>
     <header>
-        <div class="splash">
+        <!-- splash screen is in mark-up so that the game is more likely to show up in search engines -->
+        <div class="splash" autofocus>
             <h1>Pan-African MemoJam</h1>
             <h2>Flag Match Extravaganza</h2>
-            <button class="start">
+            <button class="start" tabindex=1 autofocus>
                 <h2>Go!</h2>
             </button>
         </div>
     </header>
     <main>
-        
         <div class="game-screen blurred site-wrapper">
             <div class="guesses-box">
                 <h2>Pan-African MemoJam</h2>
@@ -27,18 +27,20 @@
             </div>
             <ol class="game-board">
                 <li class="card">
-                    <div class="face-down">
-                        <img src="assets/africa-continent.svg" alt="" class="card-emblem">
-                    </div>
-                    <div class="face-up">
-                        <h4 class="name"></h4>
-                        <div class="wrap-image">
-                            <img src="" alt="" class="flag">
+                    <button tabindex=2>
+                        <div class="face-down">
+                            <img src="assets/africa-continent.svg" alt="" class="card-emblem">
                         </div>
-                        <div class="wrap-image hide">
-                            <img class="check-mark " src="assets/check-mark.svg"  alt="check mark">
+                        <div class="face-up">
+                            <h4 class="name"></h4>
+                            <div class="wrap-image">
+                                <img src="" alt="" class="flag">
+                            </div>
+                            <div class="wrap-image hide">
+                                <img class="check-mark " src="assets/check-mark.svg"  alt="check mark">
+                            </div>
                         </div>
-                    </div>
+                    </button>
                 </li>
             </ol>
             <h6>
