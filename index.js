@@ -25,6 +25,7 @@ $(function() {
             this.splash.addClass('hide');
             this.resetBoard();
             this.gameScreen.removeClass('blurred');
+            document.querySelector(".card").firstElementChild.focus();
         },
         // end of splashGo
         winner: function () {
@@ -32,7 +33,7 @@ $(function() {
             const win = `
                 <div class="winner">
                     <h1>You won in <span class="guess-display">${this.guesses}</span> guesses!</h1>
-                    <button class="reset" aria-label="card 1" tabindex=20>
+                    <button class="reset" tabindex=20>
                         <h2>Reset</h2>
                     </button>
                 </div>
