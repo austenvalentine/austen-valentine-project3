@@ -25,6 +25,7 @@ $(function() {
             this.splash.addClass('hide');
             this.resetBoard();
             this.gameScreen.removeClass('blurred');
+            this.gameScreen.attr('aria-hidden', 'false');
             document.querySelector(".card").firstElementChild.focus();
         },
         // end of splashGo
