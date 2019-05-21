@@ -31,6 +31,7 @@ $(function() {
         // end of splashGo
         winner: function () {
             this.gameScreen.addClass('blurred');
+            this.gameScreen.attr('aria-hidden', 'true');
             const win = `
                 <div class="winner">
                     <label for="reset"><p aria-live="polite">You won in <span class="guess-display">${this.guesses}</span> guesses!</p></label>
