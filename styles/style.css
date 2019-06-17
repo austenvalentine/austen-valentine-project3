@@ -215,12 +215,17 @@ h1 {
 
 h2 {
   font-size: 7vw;
+  text-align: center;
 }
 
 .contributor {
   text-decoration: underline;
   font-size: 1.4rem;
   line-height: 2;
+}
+
+.guesses-box {
+  letter-spacing: .1rem;
 }
 
 .overlay-text-box {
@@ -246,7 +251,7 @@ h2 {
 
 main {
   height: 100vh;
-  background-color: #ababab;
+  background-color: #67998d;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -261,10 +266,11 @@ main {
 }
 
 .game-board {
-  background-color: tan;
+  background-color: #90a19f;
   list-style: none;
-  height: 60vh;
-  padding: 2%;
+  height: 66vh;
+  padding: 3%;
+  border-radius: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -286,6 +292,7 @@ main {
 .guess-display, .matches-got {
   font-weight: bold;
   font-size: 1.2rem;
+  padding-left: 3%;
 }
 
 .card {

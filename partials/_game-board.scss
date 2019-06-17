@@ -1,12 +1,14 @@
 .game-board {
-    background-color: tan;
+    background-color: rgb(144, 161, 159);
     list-style: none;
-    height: 60vh;
-    padding: 2%;
+    height: 66vh;
+    padding: 3%;
+    border-radius: 10px;
     display: flex;
     justify-content: space-between;
     align-content: space-between;
     align-items: space-center;
     flex-flow: row wrap;
     position: relative;
+    
 }
