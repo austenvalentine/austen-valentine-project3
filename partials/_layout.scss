@@ -9,11 +9,15 @@
     margin: 0;
 }
 
-.game-full-screen {
+body {
     height: 100vh;
-    width: 100vw;
-    position: relative;
 }
+
+// .game-full-screen {
+//     height: 100vh;
+//     width: 100vw;
+//     position: relative;
+// }
 
 img {
     max-width: 100%;
@@ -24,6 +28,10 @@ img {
 .hide {
     // display: none;
     visibility: hidden;
+}
+
+footer {
+    text-align: center;
 }
 
 @mixin overlay {

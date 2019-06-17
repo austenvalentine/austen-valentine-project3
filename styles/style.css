@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Barrio|Black+Han+Sans|Do+Hyeon|Kirang+Haerang&display=swap");
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary {
   display: block;
 }
@@ -176,10 +177,8 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   margin: 0;
 }
 
-.game-full-screen {
+body {
   height: 100vh;
-  width: 100vw;
-  position: relative;
 }
 
 img {
@@ -191,10 +190,58 @@ img {
   visibility: hidden;
 }
 
+footer {
+  text-align: center;
+}
+
 @media screen and (max-aspect-ratio: 1 / 1) {
   .site-wrapper {
     width: 95%;
   }
+}
+
+a {
+  text-decoration: none;
+  color: navy;
+}
+
+body {
+  font-family: "Do Hyeon";
+}
+
+h1 {
+  font-size: 8.2vw;
+}
+
+h2 {
+  font-size: 7vw;
+}
+
+.contributor {
+  text-decoration: underline;
+  font-size: 1.4rem;
+  line-height: 2;
+}
+
+.overlay-text-box {
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.splash .overlay-text-box {
+  background-color: #ffd8d8;
+}
+
+.winner .overlay-text-box {
+  background-color: #e4f3ff;
+}
+
+.overlay-button {
+  border-radius: 10px;
+  border: 4px solid #e9f8a8;
+  background-color: #c9d68f;
+  font-size: 2rem;
+  margin: 20px 0;
 }
 
 main {
@@ -216,7 +263,7 @@ main {
 .game-board {
   background-color: tan;
   list-style: none;
-  height: 70vh;
+  height: 60vh;
   padding: 2%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -415,6 +462,7 @@ main {
           justify-content: center;
   z-index: 10;
   text-align: center;
+  padding: 10px;
 }
 
 .splash {

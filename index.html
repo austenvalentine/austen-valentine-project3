@@ -10,13 +10,16 @@
 <body>
     <header>
         <div class="splash">
-            <label for="start">
-                <h1 aria-live="polite">Pan-African MemoJam</h1>
-                <h2>Flag Match Extravaganza</h2>
-            </label>
-            <button value="start" class="start" tabindex=1 autofocus>
-                <strong>Go!</strong>
-            </button>
+            <div class="overlay-text-box">
+                <label for="start">
+                    <h1 aria-live="polite">Pan-African MemoJam</h1>
+                    <h2>Flag Match Extravaganza</h2>
+                </label>
+                <button value="start" class="overlay-button start" tabindex=1 autofocus>
+                    <strong>Go!</strong>
+                </button>
+                <p>Click on the cards to memorize national flags across Africa!</p>
+            </div>
         </div>
     </header>
     <main>
@@ -46,13 +49,10 @@
                     </button>
                 </li>
             </ol>
-            <p>
-                Game: <a href="https://twitter.com/austenfound">Austen Valentine</a>; <a href="https://upload.wikimedia.org/wikipedia/commons/8/8c/Africa_icon.svg">Africa</a>, <a href="https://en.wikipedia.org/wiki/Flag_of_Western_Sahara#/media/File:Flag_of_the_Sahrawi_Arab_Democratic_Republic.svg">flag</a>, <a href="https://donate.wikimedia.org/wiki/File:Checkmark-blue.svg">check</a>: <a href="https://wikimediafoundation.org/">Wikimedia</a>; 
-                <a href="http://flag-icon-css.lip.is/?continent=Africa">Flags</a>: <a href="https://lip.is/">Panayiotis Lipiridis</a>.
-            </p>
         </div>
     </main>
-    <footer aria-live="assertive">
+    <footer>
+        
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
