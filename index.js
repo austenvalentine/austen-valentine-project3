@@ -34,10 +34,22 @@ $(function() {
             this.gameScreen.attr('aria-hidden', 'true');
             const win = `
                 <div class="winner">
-                    <label for="reset"><p aria-live="polite">You won in <span class="guess-display">${this.guesses}</span> guesses!</p></label>
-                    <button value="reset" class="reset" tabindex=1>
-                        <strong>Reset</strong>
-                    </button>
+                    <div class="overlay-text-box">
+                        <label for="reset"><p aria-live="polite">You won in <span class="guess-display">${this.guesses}</span> guesses!</p></label>
+                        <button value="reset" class="overlay-button reset" tabindex=1>
+                            <strong>Reset</strong>
+                        </button>
+                        <h3>Credits</h3>
+                        <p class="credits">
+                            Game: <span class="contributor"><a href="https://twitter.com/austenfound">Austen Valentine</a></span>
+                        </p>
+                        <p class="credits">
+                            <a href="https://upload.wikimedia.org/wikipedia/commons/8/8c/Africa_icon.svg">Africa</a>, <a href="https://en.wikipedia.org/wiki/Flag_of_Western_Sahara#/media/File:Flag_of_the_Sahrawi_Arab_Democratic_Republic.svg">flag</a>, <a href="https://donate.wikimedia.org/wiki/File:Checkmark-blue.svg">check</a>: <span class="contributor"><a href="https://wikimediafoundation.org/">Wikimedia</a></span>
+                        </p>
+                        <p class="credits">
+                            <a href="http://flag-icon-css.lip.is/?continent=Africa">Flags</a>: <span class="contributor"><a href="https://lip.is/">Panayiotis Lipiridis</a></span>
+                        </p>
+                    </div>
                 </div>
             `;
             this.footer.append(win);
